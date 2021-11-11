@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <title>Todo List!</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div class="todoDiv">
+          <header id="header">
+            <h1>Felix fantastiska Todo lista!</h1>
+          </header>
+          <main class="main">	
+            <form id="todo-form">
+              <input type="text" name="name" placeholder="Lägg till en Todo!">
+              <button type="submit" name="submit" value="submit">Lägg till</button>
+            </form>
+
+            <button onclick="sortList()">Sort</button>
+
+            <ul id="todo-lista">
+              <li>
+                <span>Bädda sängen</span>
+                <label>Avklarat<input type="checkbox"></label>
+                <button>Ändra</button>
+                <button>Ta bort</button>
+              </li> 
+              <li>
+                <span>Tömma disken</span>
+                <label>Avklarat<input type="checkbox"></label>
+                <button>Ändra</button>
+                <button>Ta bort</button>
+              </li>
+              <li>
+                <span>Handla mat</span>
+                <label>Avklarat<input type="checkbox"></label>
+                <button>Ändra</button>
+                <button>Ta bort</button>
+              </li>
+              <li>
+                <span>Sova</span>
+                <label>Avklarat<input type="checkbox"></label>
+                <button>Ändra</button>
+                <button>Ta bort</button>
+              </li>
+              <li>
+                <span>Krama Sebastian (Obligatoriskt)</span>
+                <label>Avklarat<input type="checkbox"></label>
+                <button>Ändra</button>
+                <button>Ta bort</button>
+              </li>  
+            </ul>	
+          </main>
+        </div>
+      </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
