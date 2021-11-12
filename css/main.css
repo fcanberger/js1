@@ -166,3 +166,15 @@
     transition: 0.4s;
     color: orange;
   }
+
+  .sortera button {
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    color: white;
+    background: rgb(73, 73, 252);
+    border: 0;
+    cursor: pointer;
+    margin-left: 45%;
+  }

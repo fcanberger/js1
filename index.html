@@ -15,13 +15,16 @@
           <header id="header">
             <h1>Felix fantastiska Todo lista!</h1>
           </header>
+
           <main class="main">	
             <form id="todo-form">
               <input type="text" name="name" placeholder="Lägg till en Todo!">
               <button type="submit" name="submit" value="submit">Lägg till</button>
             </form>
 
-            <button onclick="sortList()">Sort</button>
+            <div class="sortera">
+              <button onclick="sortList()">Sortera</button>
+            </div>
 
             <ul id="todo-lista">
               <li>
