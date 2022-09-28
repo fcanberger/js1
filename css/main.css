@@ -1,180 +1,114 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font: 16px/1.4 'Mulish', sans-serif;
-    color: #333;
-    background: #e3e9ff;
-  }
-  
-  p {
-    margin: 0 0 20px;
-  }
-  
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  button:focus,
-  input[type="text"]:focus {
-    outline: none;
-  }
-  
-  #wrapper {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-  }
-  
-  .todoDiv {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.2);
-    margin: 50px auto;
-    max-width: 800px;
-  }
-  
-  
-  #header {
-    background: orange;
-    color: #fff;
-    padding: 20px 30px;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-  }
-  
-  #header h1 {
-    font-size: 24px;
-    font-weight: 400;
-  }
-  
-  
-  .main {
-    padding: 30px;
-  }
-  
-  
-  #todo-form {
-    position: relative;
-    margin: 0 0 20px;
-  }
-  
-  #todo-form input {
-    border: 1px solid #eee;
-    padding: 10px 100px 10px 10px;
-    width: 100%;
-    height: 50px;
-    font: 16px/1.4 'Mulish', sans-serif;
-    color: #333;
-  }
-  
-  #todo-form button {
-    padding: 0 1em;
-    font: 16px/1.4 'Mulish', sans-serif;
-    background: orange;
-    color: #fff;
-    border-radius: 3px;
-    border: 0;
-    cursor: pointer;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    height: 40px;
-    transition: opacity 0.3s linear;
-  }
-  
-  #todo-form button:hover {
-    opacity: 0.7;
-  }
-  
-  
-  .showHide {
-    margin: 0 0 20px;
-  }
-  
-  .showHide input[type="checkbox"] {
-    margin: 0 0 0 5px;
-  }
-  
-  
-  #todo-lista li {
-    padding: 20px;
-    margin: 0 0 10px;
-    border-radius: .2em;
-    border: 1px solid #eee;
-  }
-  
-  #todo-lista li span,
-  #todo-lista li input[type="text"] {
-    font: 20px/1.4 'Mulish', sans-serif;
-    margin: 0 0 5px;
-    display: block;
-  }
-  
-  #todo-lista li input[type="text"] {
-    border: 1px solid #eee;
-    padding: 10px 100px 10px 10px;
-    width: 100%;
-    height: 50px;
-    color: #333;
-  }
-  
-  #todo-lista li label {
-    font-size: 14px;
-    display: block;
-    margin: 0 0 10px;
-    color: rgba(112, 112, 112, .55);
-  }
-  
-  #todo-lista li label input[type="checkbox"] {
-    margin: 0 0 0 5px;
-  }
-  
-  #todo-lista li button {
-    font-size: 14px;
-    margin: 0 5px 0 0;
-    border-radius: 3px;
-    padding: 5px 10px;
-    color: white;
-    background: orange;
-    border: 0;
-    cursor: pointer;
-    transition: opacity 0.3s linear;
-  }
-  
-  #todo-lista li button:last-child {
-    background: red;
-  }
-  
-  #todo-lista li button:hover {
-    opacity: 0.7;
-  }
-  
-  
-  #todo-lista li.responded {
-    transition: 0.4s;
-    border-color: orange;
-  }
-  
-  #todo-lista li.responded label,
-  #todo-lista li.responded span {
-    transition: 0.4s;
-    color: orange;
-  }
+body {
+  font-size: 12px;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  background-color: beige;
+  font-family: "Montserrat", sans-serif;
+}
 
-  .sortera button {
-    font-size: 20px;
-    margin-bottom: 15px;
-    border-radius: 3px;
-    padding: 5px 10px;
-    color: white;
-    background: rgb(73, 73, 252);
-    border: 0;
-    cursor: pointer;
-    margin-left: 45%;
+#toDoForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#toDoForm input {
+  border-radius: 12px;
+  padding: 12px;
+  height: 40px;
+  width: 200px;
+  background-color: white;
+}
+#toDoForm #addButton {
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  background-color: white;
+  font-size: 1.3rem;
+}
+#toDoForm #sortBtn {
+  border-radius: 12px;
+  margin: 10px;
+  width: 150px;
+  height: 75px;
+  background-color: white;
+  font-size: 1.4rem;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.toDoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.toDoContainer .listUl {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  font-size: 2rem;
+  border: 1px solid black;
+  background-color: white;
+  width: 250px;
+  border-radius: 12px;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+button[type="button"] {
+  background-color: red;
+  color: white;
+  font-size: 1.2rem;
+}
+
+p {
+  color: black;
+  font-size: 4rem;
+  text-shadow: 1px 1px black;
+}
+
+li {
+  display: flex;
+  list-style: none;
+}
+
+@media screen and (min-width: 1200px) {
+ 
+  #toDoForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
+  #toDoForm input {
+    border-radius: 12px;
+    padding: 12px;
+    width: 150px;
+    height: 25px;
+  }
+  #toDoForm #addButton {
+    border-radius: 12px;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    background-color: white;
+  }
+  #toDoForm #sortBtn {
+    border-radius: 12px;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+  }
+}

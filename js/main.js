@@ -1,117 +1,107 @@
-function sortList() {
-    
-    var list, i, switching, b, shouldSwitch;
-    list = document.getElementById("todo-lista");
-    switching = true;
-    
-    while (switching) {
-      
-      switching = false;
-      b = list.getElementsByTagName("LI");
-      
-      for (i = 0; i < (b.length - 1); i++) {
-        
-        shouldSwitch = false;
-        
-        if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-          
-          shouldSwitch = true;
-          break;
-        }
-      }
-      if (shouldSwitch) {
-        
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
-
-      }
-    }
+class todoValues {
+  constructor(item, done) {
+    this.item = item;
+    this.done = done;
   }
-
-
-
-const form = document.querySelector('#todo-form');
-const input = document.querySelector('input');
-const main = document.querySelector('.main');
-const ul = document.querySelector('#todo-lista');
-
-
-function createLi() {
-  const li = document.createElement('li');
-
-  const span = document.createElement('span');
-  span.textContent = input.value;
-
-  const label = document.createElement('label');
-  label.textContent = 'Avklarat';
-
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-
-  const editBtn = document.createElement('button');
-  editBtn.textContent = 'Ändra';
-
-  const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'Ta bort';
-
-
-  li.appendChild(span);
-  li.appendChild(label);
-  label.appendChild(checkbox);
-  li.appendChild(editBtn);
-  li.appendChild(removeBtn);
-
-  return li;
 }
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+let todoList = [];
 
-  const li = createLi();
+let newTodo = new todoValues("Bädda", false);
+let newTodo2 = new todoValues("Handla", false);
+let newTodo3 = new todoValues("Jobba", false);
+let newTodo4 = new todoValues("Plugga", false);
+todoList.push(newTodo);
+todoList.push(newTodo2);
+todoList.push(newTodo3);
+todoList.push(newTodo4);
 
-  if(input.value === '') {
-    alert('Var vänlig och skriv någonting');
-  } else {
-    ul.appendChild(li);
-  }
-}); 
+let todoContainer = document.createElement("div");
+todoContainer.className = "todoContainer";
 
+writeList();
 
-ul.addEventListener('change', (event) => {
-  const checkbox = event.target;
-  const checked = checkbox.checked;
-  const li = checkbox.parentNode.parentNode;
-  if(checked) {
-    li.className = 'responded';
-  } else {
-    li.className = '';
-  }
-});
+function writeList() {
+  todoContainer.innerHTML = "";
+  for (let i = 0; i < todoList.length; i++) {
+    let currentItem = todoList[i]
 
+    let ul = document.createElement("ul");
+    ul.className = "listUl";
 
-ul.addEventListener('click', (event) => {
-  if(event.target.tagName === 'BUTTON') {
-    const button = event.target;
-    const li = button.parentNode;
-    const ul = li.parentNode;
-    if(button.textContent === 'Ta bort') {
-      ul.removeChild(li);
-    } else if(button.textContent === 'Ändra') {
-      const span = li.firstElementChild;
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = span.textContent;
-      li.insertBefore(input, span);
-      li.removeChild(span);
-      button.textContent = 'Spara';
-    } else if(button.textContent === 'Spara') {
-      const input = li.firstElementChild;
-      const span = document.createElement('span');
-      span.textContent = input.value;
-      li.insertBefore(span, input);
-      li.removeChild(input);
-      button.textContent = 'Ändra';
+    let li = document.createElement("li");
+    li.className = "listLi";
+    li.innerHTML = currentItem.item;
+
+    let doneButton = document.createElement("input");
+    doneButton.setAttribute("type", "checkbox");
+    doneButton.className = "doneButtons";
+
+    let removeButton = document.createElement("button");
+    removeButton.className = "removeButtons";
+    removeButton.setAttribute("type", "button");
+    removeButton.innerHTML = '<i class="bi bi-x-square-fill"></i>';
+
+    let doneButtonContainer = document.createElement("li");
+    let removeButtonContainer = document.createElement("li");
+    doneButtonContainer.appendChild(doneButton);
+    removeButtonContainer.appendChild(removeButton);
+
+    let buttonStyle = li;
+
+    doneButton.addEventListener("change", checkIfDone);
+
+    function checkIfDone() {
+      if (doneButton.done == true) {
+        buttonStyle.style.textDecoration = "line-through";
+        currentItem.done = true;
+        ul.style.backgroundColor = "gray";
+      } else {
+        buttonStyle.style.textDecoration = "none";
+        currentItem.done = false;
+        ul.style.backgroundColor = "white";
+      }
     }
-  }
-});
 
+    removeButton.addEventListener("click", removeToDo);
+    function removeToDo() {
+      todoList.splice(i, 1);
+      writeList();
+    }
+
+    todoContainer.appendChild(ul);
+    ul.appendChild(li);
+    ul.appendChild(doneButtonContainer);
+    ul.appendChild(removeButtonContainer);
+  }
+}
+
+let inputField = document.getElementById("inputField");
+document.getElementById("toDoForm").addEventListener("submit", addNewToDo);
+
+function addNewToDo(e) {
+  e.preventDefault();
+  let Usertext = inputField.value;
+  if (Usertext !== "") {
+    let newToDoItem = new todoValues(Usertext, false);
+    todoList.push(newToDoItem);
+    inputField.value = "";
+    writeList();
+  }
+}
+
+function sortList() {
+  todoList.sort(function (a, b) {
+    if (a.item.toLowerCase() < b.item.toLowerCase()) return -1;
+    if (a.item.toLowerCase() > b.item.toLowerCase()) return 1;
+    return 0;
+  });
+
+  writeList();
+}
+
+let sortBtn = document
+  .getElementById("sortBtn")
+  .addEventListener("click", sortList);
+
+document.getElementById("container").appendChild(todoContainer);
